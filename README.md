@@ -6,55 +6,55 @@ A lightweight PHP framework.
 
 ### Basic Controller
 
-        <?php
-        class foo
-        {
-                public function index()
-                {
-                        // executed on request URI /foo
-                }
+    <?php
+    class foo
+    {
+            public function index()
+            {
+                    // executed on request URI /foo
+            }
 
-                public function bar()
-                {
-                        // executed on request URI /foo/bar
-                }
-        }
+            public function bar()
+            {
+                    // executed on request URI /foo/bar
+            }
+    }
 
 ### Advance Controller
 
-        <?php
-        // Framework classes
-        use Framework\Http;
-        use Framework\View;
+    <?php
+    // Framework classes
+    use Framework\Http;
+    use Framework\View;
 
-        // Monolog vendor (installed via Composer)
-        use Monolog\Logger;
-        use Monolog\Handler\StreamHandler;
+    // Monolog vendor (installed via Composer)
+    use Monolog\Logger;
+    use Monolog\Handler\StreamHandler;
 
-        class test
-        {
-                public function index()
-                {
-                        // create a log channel
-                        $log = new Logger('name');
-                        $log->pushHandler(new StreamHandler('/tmp/monolog.txt', Logger::WARNING));
+    class log
+    {
+            public function index()
+            {
+                    // create a log channel
+                    $log = new Logger('name');
+                    $log->pushHandler(new StreamHandler('/tmp/monolog.txt', Logger::WARNING));
 
-                        // add records to the log
-                        $log->addWarning('Foo');
-                        $log->addError('Bar');
+                    // add records to the log
+                    $log->addWarning('Foo');
+                    $log->addError('Bar');
 
-                        // assuming everything went OK
-                        $json = json_encode(array(
-                                'ok' => true,
-                                'message' => 'Log written successfully.'
-                        ));
-                        Http::setHeader(array(
-                                'Content-Length' => strlen($json),
-                                'Content-type' => 'application/json;'
-                        ));
-                        View::setContent($json);
-                }
-        }
+                    // assuming everything went OK
+                    $json = json_encode(array(
+                            'ok' => true,
+                            'message' => 'Log written successfully.'
+                    ));
+                    Http::setHeader(array(
+                            'Content-Length' => strlen($json),
+                            'Content-type' => 'application/json;'
+                    ));
+                    View::setContent($json);
+            }
+    }
 
 ## Requirement
 
