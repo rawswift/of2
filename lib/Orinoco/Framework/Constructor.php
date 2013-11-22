@@ -23,6 +23,7 @@ class Constructor extends Controller
     /**
      * Constructor, setup properties
      *
+     * @param Route object $route
      * @return void
      */
     public function __construct($route)
@@ -47,7 +48,7 @@ class Constructor extends Controller
             $$controller = new $controller();
             if (method_exists($$controller, $action)) {
                 $$controller->$action();
-                $this->prepareView($$controller);
+                $this->inheritObjectVariables($$controller);
                 $this->renderLayout();
             } else {
                 Http::setHeader('HTTP/1.0 404 Not Found');

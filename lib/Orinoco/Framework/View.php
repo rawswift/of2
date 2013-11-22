@@ -16,7 +16,7 @@ class View
      * @param Controller object $obj
      * @return void
      */
-    public function prepareView($obj)
+    public function inheritObjectVariables($obj)
     {
         foreach($obj as $k => $v) {
             $this->$k = $v;
