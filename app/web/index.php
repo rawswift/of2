@@ -17,7 +17,7 @@ ob_start();
 
 // load framework's environment config
 require '../../lib/Orinoco/Config/Environment.php';
-// load framework's autload class
+// load framework's autoload class
 require FRAMEWORK_LIB_DIR . 'AutoLoad.php';
 
 // register framework's autoload methods
