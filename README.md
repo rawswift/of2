@@ -7,6 +7,7 @@ A lightweight PHP framework.
 ### Basic Controller
 
     <?php
+
     class foo
     {
             public function index()
@@ -23,15 +24,17 @@ A lightweight PHP framework.
 ### Advance Controller
 
     <?php
-    // Framework classes
-    use Framework\Http;
-    use Framework\View;
 
-    // Monolog vendor (installed via Composer)
+    // use framework's classes
+    use Orinoco\Framework\Http;
+    use Orinoco\Framework\View;
+    use Orinoco\Framework\Controller;
+
+    // use Monolog vendor (installed via Composer)
     use Monolog\Logger;
     use Monolog\Handler\StreamHandler;
 
-    class log
+    class log extends Controller
     {
             public function index()
             {
