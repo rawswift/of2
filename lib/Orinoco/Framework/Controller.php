@@ -13,14 +13,6 @@ use Orinoco\Framework\View;
 class Controller extends View
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        // nothing to do here
-    }
-
-    /**
      * Return the controller name via framework's Route class
      *
      * @return string; controller name

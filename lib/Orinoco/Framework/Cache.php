@@ -11,14 +11,6 @@ namespace Orinoco\Framework;
 class Cache
 {
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        // nothing to do here
-    }
-
-    /**
      * Check if Opcode cache is available
      * 
      * @return bool; whether or not APC is available
