@@ -1,8 +1,8 @@
 <?php
 
-use Framework\Http;
-use Framework\View;
-use Framework\Controller;
+use Orinoco\Framework\Http;
+use Orinoco\Framework\View;
+use Orinoco\Framework\Controller;
 
 class foo extends Controller
 {

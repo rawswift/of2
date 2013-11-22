@@ -10,17 +10,17 @@
 
 // [/controller/action/id/] or [/controller/action/id] e.g. /foo/bar/123456789
 // NOTE: 'id' is the index location of the ID (numeric)
-Framework\Route::add('(^\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+\/+[0-9]+\/|\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+\/+[0-9]+$)', array('controller' => SELF_CONTROLLER, 'action' => SELF_ACTION, 'id' => 2));
+Orinoco\Framework\Route::add('(^\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+\/+[0-9]+\/|\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+\/+[0-9]+$)', array('controller' => SELF_CONTROLLER, 'action' => SELF_ACTION, 'id' => 2));
 
 // [/controller/action/] or [/controller/action] e.g. /foo/bar
-Framework\Route::add('(^\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+\/|\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+$)', array('controller' => SELF_CONTROLLER, 'action' => SELF_ACTION));
+Orinoco\Framework\Route::add('(^\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+\/|\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+$)', array('controller' => SELF_CONTROLLER, 'action' => SELF_ACTION));
 
 // [/controller/id/] or [/controller/id] e.g. /foo/123456789
 // NOTE: 'id' is the index location of the ID
-Framework\Route::add('(^\/+[a-zA-Z-\-]+\/+[0-9]+\/|\/+[a-zA-Z-\-]+\/+[0-9]+$)', array('controller' => SELF_CONTROLLER, 'action' => DEFAULT_ACTION, 'id' => 1));
+Orinoco\Framework\Route::add('(^\/+[a-zA-Z-\-]+\/+[0-9]+\/|\/+[a-zA-Z-\-]+\/+[0-9]+$)', array('controller' => SELF_CONTROLLER, 'action' => DEFAULT_ACTION, 'id' => 1));
 
 // [/controller/] or [/controller] e.g. /foo
-Framework\Route::add('(^\/+[a-zA-Z-\-]+\/|\/+[a-zA-Z-\-]+$)', array('controller' => SELF_CONTROLLER, 'action' => DEFAULT_ACTION));
+Orinoco\Framework\Route::add('(^\/+[a-zA-Z-\-]+\/|\/+[a-zA-Z-\-]+$)', array('controller' => SELF_CONTROLLER, 'action' => DEFAULT_ACTION));
 
 // index/root (e.g. http://www.domain.tld/)
-Framework\Route::add('(^\/$)', array('controller' => DEFAULT_CONTROLLER, 'action' => DEFAULT_ACTION));
+Orinoco\Framework\Route::add('(^\/$)', array('controller' => DEFAULT_CONTROLLER, 'action' => DEFAULT_ACTION));

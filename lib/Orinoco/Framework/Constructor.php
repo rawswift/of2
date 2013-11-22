@@ -6,10 +6,10 @@
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
-namespace Framework;
+namespace Orinoco\Framework;
 
-use Framework\Http;
-use Framework\Controller;
+use Orinoco\Framework\Http;
+use Orinoco\Framework\Controller;
 
 class Constructor extends Controller
 {

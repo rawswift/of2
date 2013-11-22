@@ -6,9 +6,9 @@
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
-namespace Framework;
+namespace Orinoco\Framework;
 
-use Framework\View;
+use Orinoco\Framework\View;
 
 class Controller extends View
 {
@@ -27,7 +27,7 @@ class Controller extends View
      */
     public function getController()
     {
-        return \Framework\Route::getController();
+        return \Orinoco\Framework\Route::getController();
     }
 
     /**
@@ -37,7 +37,7 @@ class Controller extends View
      */
     public function getAction()
     {
-        return \Framework\Route::getAction();
+        return \Orinoco\Framework\Route::getAction();
     }
 
     /**
@@ -47,6 +47,6 @@ class Controller extends View
      */
     public function getID()
     {
-        return \Framework\Route::hasID() ? \Framework\Route::getID() : false;
+        return \Orinoco\Framework\Route::hasID() ? \Orinoco\Framework\Route::getID() : false;
     }    
 }

@@ -21,7 +21,7 @@ require '../../lib/Orinoco/Config/Environment.php';
 require FRAMEWORK_LIB_DIR . 'AutoLoad.php';
 
 // register framework's autoload methods
-$autoload = new Framework\AutoLoad();
+$autoload = new Orinoco\Framework\AutoLoad();
 $autoload->register();
 
 // load developer's config, if available
@@ -34,9 +34,9 @@ if (file_exists($app_config)) {
 require FRAMEWORK_CONFIG_DIR . 'Application.php';
 
 // instantiate required framework libs
-$http = new Framework\Http($_SERVER);
-$view = new Framework\View();
-$cache = new Framework\Cache();
+$http = new Orinoco\Framework\Http($_SERVER);
+$view = new Orinoco\Framework\View();
+$cache = new Orinoco\Framework\Cache();
 
 // used for checking opcode cache
 $cache_file = md5($http::getRequestURI());
@@ -53,7 +53,7 @@ if (CACHE_ENABLE && $cache->isCacheAvailable() && $cache->isCacheDirWritable() &
     }
 
     // instantiate Route class, used for determining controller and action to be used
-    $route = new Framework\Route($http::getRequestURI());
+    $route = new Orinoco\Framework\Route($http::getRequestURI());
 
     // load developer's route config
     $custom_routes = APPLICATION_CONFIG_DIR . 'Route.php';
@@ -70,7 +70,7 @@ if (CACHE_ENABLE && $cache->isCacheAvailable() && $cache->isCacheDirWritable() &
     // parse request, the actual URI parsing process. return's false if no route is found
     if ($route->parseRequest()) {
         // if all goes well, instantiate Constructor class
-        $constructor = new \Framework\Constructor($route);
+        $constructor = new \Orinoco\Framework\Constructor($route);
         // ...then dispatch the requested controller and action method
         $constructor->dispatch();
         // check if we need to cache (opcode)

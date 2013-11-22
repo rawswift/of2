@@ -10,9 +10,10 @@
 define('ROOT_DIR', '../../');
 
 // framework related stuff
-define('FRAMEWORK_BASE_DIR', ROOT_DIR . 'lib/Orinoco/');
-define('FRAMEWORK_LIB_DIR', FRAMEWORK_BASE_DIR . 'Framework/');
-define('FRAMEWORK_CONFIG_DIR', FRAMEWORK_BASE_DIR . 'Config/');
+define('FRAMEWORK_BASE_DIR', ROOT_DIR . 'lib/');
+define('FRAMEWORK_VENDOR_DIR', FRAMEWORK_BASE_DIR . 'Orinoco/');
+define('FRAMEWORK_LIB_DIR', FRAMEWORK_VENDOR_DIR . 'Framework/');
+define('FRAMEWORK_CONFIG_DIR', FRAMEWORK_VENDOR_DIR . 'Config/');
 
 // application related stuff
 define('APPLICATION_BASE_DIR', ROOT_DIR . 'app/');

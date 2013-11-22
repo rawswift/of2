@@ -6,7 +6,7 @@
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
-namespace Framework;
+namespace Orinoco\Framework;
 
 class AutoLoad
 {
@@ -61,7 +61,7 @@ class AutoLoad
      */
     public static function register()
     {
-        spl_autoload_register(array('Framework\AutoLoad', 'autoLoadFramework')); // register class Framework\AutoLoad::autoLoadFramework
-        spl_autoload_register(array('Framework\AutoLoad', 'autoLoadController')); // register class Framework\AutoLoad::autoLoadController
+        spl_autoload_register(array('Orinoco\Framework\AutoLoad', 'autoLoadFramework')); // register class Orinoco\Framework\AutoLoad::autoLoadFramework
+        spl_autoload_register(array('Orinoco\Framework\AutoLoad', 'autoLoadController')); // register class Orinoco\Framework\AutoLoad::autoLoadController
     }
 }
