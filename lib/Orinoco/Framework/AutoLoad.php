@@ -49,6 +49,10 @@ class AutoLoad
             $file_name  = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
         }
         $file_name .= str_replace('_', DIRECTORY_SEPARATOR, $class_name) . '.php';
+        // this will resolve the proper directory name, if application namespace is defined
+        if (defined('APPLICATION_NAMESPACE')) {
+            $file_name = str_replace(APPLICATION_NAMESPACE, '', $file_name);
+        }
         if (file_exists(APPLICATION_CONTROLLER_DIR . $file_name)) {
             require APPLICATION_CONTROLLER_DIR . $file_name;
         }

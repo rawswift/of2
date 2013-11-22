@@ -44,6 +44,9 @@ class Constructor extends Controller
     {
         $controller = $this->controller;
         $action = $this->action;
+        if (defined('APPLICATION_NAMESPACE')) {
+            $controller = str_replace('\\', '', APPLICATION_NAMESPACE) . '\\' . $controller;
+        }
         if (class_exists($controller)) {
             $$controller = new $controller();
             if (method_exists($$controller, $action)) {
