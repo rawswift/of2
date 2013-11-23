@@ -40,5 +40,48 @@ class Controller extends View
     public function getID()
     {
         return \Orinoco\Framework\Route::hasID() ? \Orinoco\Framework\Route::getID() : false;
-    }    
+    }
+
+    /**
+     * Redirect using header
+     *
+     * @param string|array $mixed
+     * @param Use 'refresh' instead of 'location' $use_refresh
+     * @param Time to refresh $refresh_time
+     * @return void
+     */
+    public function redirect($mixed, $use_refresh = false, $refresh_time = 3)
+    {
+        $url = null;
+        if (is_string($mixed)) {
+            $url = trim($mixed);
+        } else if (is_array($mixed)) {
+            $controller = $this->getController();
+            $action = null;
+            if (isset($mixed['controller'])) {
+                $controller = trim($mixed['controller']);
+            }
+            $url = '/' . $controller;
+            if (isset($mixed['action'])) {
+                $action = trim($mixed['action']);
+            }
+            if (isset($action)) {
+                $url .= '/' . $action;
+            }
+            if (isset($mixed['query'])) {
+                $query = '?';
+                foreach ($mixed['query'] as $k => $v) {
+                    $query .= $k . '=' . urlencode($v) . '&';
+                }
+                $query[strlen($query) - 1] = '';
+                $query = trim($query);
+                $url .= $query;
+            }
+        }
+        if (!$use_refresh) {
+            Http::setHeader('Location: ' . $url);
+        } else {
+            Http::setHeader('refresh:' . $refresh_time . ';url=' . $url);
+        }
+    }
 }
