@@ -36,14 +36,13 @@ require FRAMEWORK_CONFIG_DIR . 'Application.php';
 // instantiate required framework libs
 $http = new Orinoco\Framework\Http($_SERVER);
 $view = new Orinoco\Framework\View();
-$cache = new Orinoco\Framework\Cache();
 
-// used for checking opcode cache
+// used for checking page cache
 $cache_file = md5($http::getRequestURI());
 
-// use opcode cache (using APC), if it's available
-if (CACHE_ENABLE && $cache->isCacheAvailable() && $cache->isCacheDirWritable() && $cache->isCached($cache_file)) {
-    $view->setContent($cache->readCache($cache_file));
+// use page cache, if enabled and available
+if (PAGE_CACHE_ENABLE && $view->isPageCacheDirWritable() && $view->isPageCached($cache_file)) {
+    $view->setContent($view->readPageCache($cache_file));
     $view->send();
 } else {
 
@@ -73,10 +72,10 @@ if (CACHE_ENABLE && $cache->isCacheAvailable() && $cache->isCacheDirWritable() &
         $constructor = new \Orinoco\Framework\Constructor($route);
         // ...then dispatch the requested controller and action method
         $constructor->dispatch();
-        // check if we need to cache (opcode)
-        if (CACHE_ENABLE && $cache->isCacheAvailable() && $cache->isCacheDirWritable()) {
-            $cache_contents = ob_get_contents();
-            $cache->writeCache($cache_file, $cache_contents);
+        // check if we need to cache output/page
+        if (PAGE_CACHE_ENABLE && $view->isPageCacheDirWritable() && !$view->isPageCached($cache_file)) {
+            $cached_contents = ob_get_contents();
+            $view->writePageCache($cache_file, $cached_contents);
         }
         // finally, render the request's content
         $view->send();

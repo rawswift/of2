@@ -27,14 +27,14 @@ if (!defined('DEFAULT_ACTION')) {
     define('DEFAULT_ACTION', 'index');
 }
 
-// define opcode cache enabler, if it's not yet defined
-if (!defined('CACHE_ENABLE')) {
-    define('CACHE_ENABLE', false);
+// define page cache enabler, if it's not yet defined
+if (!defined('PAGE_CACHE_ENABLE')) {
+    define('PAGE_CACHE_ENABLE', false);
 }
 
-// define opcode cache expiry time, if it's not yet defined
-if (!defined('CACHE_EXPIRES')) {
-    define('CACHE_EXPIRES', 900); // 15mins
+// define page cache expiry time, if it's not yet defined
+if (!defined('PAGE_CACHE_EXPIRES')) {
+    define('PAGE_CACHE_EXPIRES', 900); // 15mins
 }
 
 // presentation layer stuff

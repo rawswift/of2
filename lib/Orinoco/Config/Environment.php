@@ -24,5 +24,5 @@ define('APPLICATION_VIEW_DIR', APPLICATION_BASE_DIR . 'view/');
 define('APPLICATION_LAYOUT_DIR', APPLICATION_VIEW_DIR . 'layout/');
 define('APPLICATION_PAGE_DIR', APPLICATION_VIEW_DIR . 'page/');
 
-// where to store opcode cache
-define('APPLICATION_CACHE_DIR', APPLICATION_BASE_DIR . 'cache/');
+// where to store page cache
+define('APPLICATION_PAGE_CACHE_DIR', APPLICATION_BASE_DIR . 'cache/');
