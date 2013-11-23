@@ -18,5 +18,5 @@
 
 // blog style
 // [/year/month/day/blog-style-url/] or [/year/month/day/blog-style-url]
-// NOTE: change the 'BLOG_CONTROLLER' to your actual controller that will handle this URI request
+// NOTE: change the 'blogController' to your actual controller that will handle this URI request
 // Orinoco\Framework\Route::add('(^\/+[0-9]+\/+[0-9]+\/+[0-9]+\/+[a-zA-Z0-9-\--\;-\+]+\/|\/+[0-9]+\/+[0-9]+\/+[0-9]+\/+[a-zA-Z0-9-\--\;-\+]+$)' , array('controller' => 'blogController', 'action' => DEFAULT_ACTION));

@@ -148,7 +148,6 @@ class Route
             if (preg_match($pattern, $subject)) {
                 return $v;
             }
-            
         }
         return false;
     }
