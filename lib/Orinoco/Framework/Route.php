@@ -11,21 +11,21 @@ namespace Orinoco\Framework;
 class Route
 {
     // route table (map)
-    static public $route_table;
+    public static $route_table;
     // contains the raw URI request e.g. /foo/bar?id=123
-    static public $request_uri;
+    public static $request_uri;
     // contains the parsed URL components
-    static public $components;
+    public static $components;
     // contains the actual controller and action (array)
-    static public $request_map;
+    public static $request_map;
     // controller name
-    static public $controller;
+    public static $controller;
     // action name
-    static public $action;
+    public static $action;
     // controller class path
-    static public $path;
+    public static $path;
     // URI segments storage (e.g. /foo/:name/:id)
-    static public $segments = array();
+    public static $segments = array();
 
     /**
      * Constructor, setup properties
