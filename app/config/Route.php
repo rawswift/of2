@@ -15,7 +15,7 @@
 // Orinoco\Framework\Route::setRoute("/foo/bar", array("controller" => "foo", "action" => "bar"));
 
 // regular expression and specific controller class path e.g. /foo/test
-// Orinoco\Framework\Route::setRoute("(^\/+[a-zA-Z0]+\/test+$)", array("controller" => "test", "action" => "index", "path" => "/path/to/test.php"));
+// Orinoco\Framework\Route::setRoute("(^\/+[a-zA-Z]+\/test+$)", array("controller" => "test", "action" => "index", "path" => "/path/to/test.php"));
 
 // override default index (home page) route
 // Orinoco\Framework\Route::setRoute("/", array("controller" => "index", "action" => "index", "path" => "/path/to/custom/home.php"));

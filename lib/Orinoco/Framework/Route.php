@@ -127,7 +127,6 @@ class Route
             if (isset($v['filters'])) {
                 $filters = $v['filters'];
             }
-
             $callback = function($matches) use ($filters) {
                 if (isset($matches[1]) && isset($filters[$matches[1]])) {
                     return $filters[$matches[1]];
