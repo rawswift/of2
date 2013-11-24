@@ -123,11 +123,46 @@ class Route
     private function matchRouteRule($subject)
     {
         foreach(self::$route_table as $k => $v) {
-            $pattern = "@^". $k . "*$@i";
-            if (preg_match($pattern, $subject)) {
+            $filters = array();
+            if (isset($v['filters'])) {
+                $filters = $v['filters'];
+            }
+
+            $callback = function($matches) use ($filters) {
+                if (isset($matches[1]) && isset($filters[$matches[1]])) {
+                    return $filters[$matches[1]];
+                }
+                return '(\w+)';
+            };
+            $pattern = "@^" . preg_replace_callback("/:(\w+)/", $callback, $k) . "$@i";
+            $matches = array();
+            if (preg_match($pattern, $subject, $matches)) {
+                if(strpos($k, ':') !== false) {
+                    if (preg_match_all("/:(\w+)/", $k, $segment_keys)) {
+                        array_shift($matches);
+                        array_shift($segment_keys);
+                        foreach ($segment_keys[0] as $key => $name) {
+                            self::$segments[$name] = $matches[$key];
+                        }
+                    }
+                }
                 return $v;
             }
         }
         return false;
     }
+
+    /**
+     * Get segment value
+     *
+     * @param string $name
+     * @return int|string|bool
+     */
+    public function getSegment($name)
+    {
+        if (isset(self::$segments[$name])) {
+            return self::$segments[$name];
+        }
+        return false;
+    }    
 }
