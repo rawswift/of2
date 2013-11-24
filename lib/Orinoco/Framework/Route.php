@@ -24,8 +24,8 @@ class Route
     static public $action;
     // controller class path
     static public $path;
-    // ID storage
-    static public $id = null;
+    // URI segments storage (e.g. /foo/:name/:id)
+    static public $segments = array();
 
     /**
      * Constructor, setup properties
@@ -39,13 +39,13 @@ class Route
     }
 
     /**
-     * Add properties to route table
+     * Set/add properties to route table (map)
      *
      * @param string regular expression string $uri
      * @param array property $method_map
      * @return void
      */
-    public function add($uri, $method_map)
+    public function setRoute($uri, $method_map)
     {
         self::$route_table[trim($uri)] = $method_map;
     }
@@ -72,7 +72,6 @@ class Route
         if ($match = self::matchRouteRule(self::$components['path'])) {
             self::$controller = ($match["controller"] === SELF_CONTROLLER) ? self::$request_map[0] : $match["controller"];
             self::$action = ($match["action"] === SELF_ACTION) ? self::$request_map[1] : $match["action"];
-            self::$id = isset($match["id"]) ? self::$request_map[$match["id"]] : null;
             if (isset($match["path"])) {
                 self::$path = $match["path"];
             }
@@ -114,26 +113,6 @@ class Route
             return ltrim(self::$path, "/");
         }
         return false;
-    }
-
-    /**
-     * Check if ID is defined
-     *
-     * @return bool
-     */
-    public function hasID()
-    {
-        return isset(self::$id) ? true : false;
-    }
-
-    /**
-     * Return the $id (stored ID) value
-     *
-     * @return bool|int|string
-     */
-    public function getID()
-    {
-        return isset(self::$id) ? self::$id : false;
     }
 
     /**

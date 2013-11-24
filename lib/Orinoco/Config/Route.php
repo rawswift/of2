@@ -6,21 +6,17 @@
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
-// see also: /lib/Orinoco/Config/Application.php, for default controller and action/method name
-
-// [/controller/action/id/] or [/controller/action/id] e.g. /foo/bar/123456789
-// NOTE: 'id' is the index location of the ID (numeric)
-Orinoco\Framework\Route::add('(^\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+\/+[0-9]+\/|\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+\/+[0-9]+$)', array('controller' => SELF_CONTROLLER, 'action' => SELF_ACTION, 'id' => 2));
+/**
+ * Default routes
+ *
+ * see also: /lib/Orinoco/Config/Application.php, for default controller and action names
+ */
 
 // [/controller/action/] or [/controller/action] e.g. /foo/bar
-Orinoco\Framework\Route::add('(^\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+\/|\/+[a-zA-Z-\-]+\/+[a-zA-Z-\-]+$)', array('controller' => SELF_CONTROLLER, 'action' => SELF_ACTION));
-
-// [/controller/id/] or [/controller/id] e.g. /foo/123456789
-// NOTE: 'id' is the index location of the ID
-Orinoco\Framework\Route::add('(^\/+[a-zA-Z-\-]+\/+[0-9]+\/|\/+[a-zA-Z-\-]+\/+[0-9]+$)', array('controller' => SELF_CONTROLLER, 'action' => DEFAULT_ACTION, 'id' => 1));
+Orinoco\Framework\Route::setRoute('(^\/+[a-zA-Z]+\/+[a-zA-Z]([^/]+)/?$)', array('controller' => SELF_CONTROLLER, 'action' => SELF_ACTION));
 
 // [/controller/] or [/controller] e.g. /foo
-Orinoco\Framework\Route::add('(^\/+[a-zA-Z-\-]+\/|\/+[a-zA-Z-\-]+$)', array('controller' => SELF_CONTROLLER, 'action' => DEFAULT_ACTION));
+Orinoco\Framework\Route::setRoute('(^\/+[a-zA-Z]([^/]+)/?$)', array('controller' => SELF_CONTROLLER, 'action' => DEFAULT_ACTION));
 
 // index/root (e.g. http://www.domain.tld/)
-Orinoco\Framework\Route::add('(^\/$)', array('controller' => DEFAULT_CONTROLLER, 'action' => DEFAULT_ACTION));
+Orinoco\Framework\Route::setRoute('(^\/$)', array('controller' => DEFAULT_CONTROLLER, 'action' => DEFAULT_ACTION));

@@ -6,17 +6,41 @@
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
  */
 
-// index/root domain route 
-// Orinoco\Framework\Route::add("/", array("controller" => "index", "action" => "index"));
+/**
+ * Basic samples
+ */
 
-// controller and action/methods routes
-// Orinoco\Framework\Route::add("/foo", array("controller" => "foo", "action" => "index"));
-// Orinoco\Framework\Route::add("/foo/bar", array("controller" => "foo", "action" => "bar"));
+// basic custom routes
+// Orinoco\Framework\Route::setRoute("/foo", array("controller" => "foo", "action" => "index"));
+// Orinoco\Framework\Route::setRoute("/foo/bar", array("controller" => "foo", "action" => "bar"));
 
-// regular expression and controller path
-// Orinoco\Framework\Route::add("(^\/+[a-zA-Z0-9-\-]+\/test+$)", array("controller" => "test", "action" => "index", "path" => "/path/to/test.php"));
+// regular expression and specific controller class path e.g. /foo/test
+// Orinoco\Framework\Route::setRoute("(^\/+[a-zA-Z0]+\/test+$)", array("controller" => "test", "action" => "index", "path" => "/path/to/test.php"));
 
-// blog style
-// [/year/month/day/blog-style-url/] or [/year/month/day/blog-style-url]
-// NOTE: change the 'blogController' to your actual controller that will handle this URI request
-// Orinoco\Framework\Route::add('(^\/+[0-9]+\/+[0-9]+\/+[0-9]+\/+[a-zA-Z0-9-\--\;-\+]+\/|\/+[0-9]+\/+[0-9]+\/+[0-9]+\/+[a-zA-Z0-9-\--\;-\+]+$)' , array('controller' => 'blogController', 'action' => DEFAULT_ACTION));
+// override default index (home page) route
+// Orinoco\Framework\Route::setRoute("/", array("controller" => "index", "action" => "index", "path" => "/path/to/custom/home.php"));
+
+/**
+ * Advance samples
+ */
+
+/**
+ * Use segment name and filters
+ *
+ *   Orinoco\Framework\Route::setRoute('/foo/:id', array(
+ *           'controller' => 'foo',
+ *           'action' => 'bar',
+ *           'filters' => array(
+ *                   'id' => '(\d+)' // "id" as digits only
+ *               )
+ *       ));
+ *
+ *   Orinoco\Framework\Route::setRoute('/foo/:type/:id', array(
+ *           'controller' => 'foo',
+ *           'action' => 'type',
+ *           'filters' => array(
+ *                   'type' => '(\w+)', // "type" as letters and digits only
+ *                   'id' => '(\d+)' // "id" as digits only
+ *               )
+ *       )); 
+*/

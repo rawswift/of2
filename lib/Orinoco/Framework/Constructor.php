@@ -17,8 +17,6 @@ class Constructor extends Controller
     protected $controller;
     // action name
     protected $action;
-    // ID storage
-    protected $id = null;
 
     /**
      * Constructor, setup properties
@@ -30,9 +28,6 @@ class Constructor extends Controller
     {
         $this->controller = $route::getController();
         $this->action = $route::getAction();
-        if ($route->hasID()) {
-            $this->id = $route->getID();
-        }
     }
 
     /**
