@@ -11,7 +11,7 @@
 </head>
 <body>
     <div>
-        <?php $this->renderContent(); ?>
+        <?php $this->getContent(); ?>
     </div>
 </body>
 </html>

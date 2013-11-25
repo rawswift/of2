@@ -53,11 +53,11 @@ class View
     }
 
     /**
-     * Render presentation (action) content
+     * Get action (presentation) content
      *
      * @return bool; whether or not content file exists
      */
-    public function renderContent()
+    public function getContent()
     {
         $content_view = APPLICATION_PAGE_DIR . $this->getController() . '/' . $this->getAction() . PHP_FILE_EXTENSION;
         if(!file_exists($content_view)) {
