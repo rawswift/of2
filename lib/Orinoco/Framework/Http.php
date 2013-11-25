@@ -29,7 +29,7 @@ class Http
      *
      * @return string; request URI
      */
-    public function getRequestURI() {
+    public static function getRequestURI() {
         return self::$server['REQUEST_URI'];
     }
 
@@ -38,7 +38,7 @@ class Http
      *
      * @return void
      */
-    public function setHeader($header)
+    public static function setHeader($header)
     {
         // check if $header is an array
         if (is_array($header)) {

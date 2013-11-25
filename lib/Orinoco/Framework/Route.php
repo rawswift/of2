@@ -45,7 +45,7 @@ class Route
      * @param array property $method_map
      * @return void
      */
-    public function setRoute($uri, $method_map)
+    public static function setRoute($uri, $method_map)
     {
         self::$route_table[trim($uri)] = $method_map;
     }
@@ -55,7 +55,7 @@ class Route
      *
      * @return array route table
      */
-    public function getRouteTable()
+    public static function getRouteTable()
     {
         return self::$route_table;
     }
@@ -65,7 +65,7 @@ class Route
      *
      * @return bool; whether or not we have a matching route
      */
-    public function parseRequest()
+    public static function parseRequest()
     {
         self::$components = parse_url(self::$request_uri);
         self::$request_map = preg_split("/\//", self::$components['path'], 0, PREG_SPLIT_NO_EMPTY);
@@ -86,7 +86,7 @@ class Route
      *
      * @return bool|string
      */
-    public function getController()
+    public static function getController()
     {
         return isset(self::$controller) ? self::$controller : false;
     }
@@ -96,7 +96,7 @@ class Route
      *
      * @return bool|string
      */
-    public function getAction()
+    public static function getAction()
     {
         return isset(self::$action) ? self::$action : false;
     }
@@ -106,7 +106,7 @@ class Route
      *
      * @return bool|string
      */
-    public function isPathDefined()
+    public static function isPathDefined()
     {
         if (isset(self::$path)) {
             // make sure there's no slashes on front (left) 
@@ -120,7 +120,7 @@ class Route
      *
      * @return bool|array
      */
-    private function matchRouteRule($subject)
+    private static function matchRouteRule($subject)
     {
         foreach(self::$route_table as $k => $v) {
             $filters = array();
@@ -157,7 +157,7 @@ class Route
      * @param string $name
      * @return int|string|bool
      */
-    public function getSegment($name)
+    public static function getSegment($name)
     {
         if (isset(self::$segments[$name])) {
             return self::$segments[$name];
