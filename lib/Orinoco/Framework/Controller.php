@@ -33,16 +33,6 @@ class Controller extends View
     }
 
     /**
-     * Return the ID (based on request URI and route)
-     *
-     * @return int|string|bool
-     */
-    public function getID()
-    {
-        return \Orinoco\Framework\Route::hasID() ? \Orinoco\Framework\Route::getID() : false;
-    }
-
-    /**
      * Redirect using header
      *
      * @param string|array $mixed
