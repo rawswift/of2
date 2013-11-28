@@ -38,16 +38,16 @@ class Http
      *
      * @return void
      */
-    public static function setHeader($header)
+    public static function setHeader($header, $replace = true, $http_response_code = null)
     {
         // check if $header is an array
         if (is_array($header)) {
             foreach ($header as $k => $v) {
-                header($k . ": " . $v);
+                header($k . ": " . $v, $replace, $http_response_code);
             }
         // else, assume $header is a string
         } else {
-            header($header);
+            header($header, $replace, $http_response_code);
         }
     }
 }
