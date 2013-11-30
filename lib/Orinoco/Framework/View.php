@@ -65,7 +65,7 @@ class View
         if(isset($layout)) {
             $layout_file = APPLICATION_LAYOUT_DIR . str_replace(PHP_FILE_EXTENSION, '', $layout) . PHP_FILE_EXTENSION;
             if (!file_exists($layout_file)) {
-                Http::setHeader('Status: 200');
+                Http::setHeader(Http::getValue('SERVER_PROTOCOL') . ' 500 Internal Server Error', true, 500);
                 $this->setContent('It seems that "' . str_replace(ROOT_DIR, '', $layout_file) . '" does not exists.');
                 $this->send();
             } else {
@@ -76,7 +76,7 @@ class View
             if (file_exists($default_layout)) {
                 require $default_layout;
             } else {
-                Http::setHeader('Status: 200');
+                Http::setHeader(Http::getValue('SERVER_PROTOCOL') . ' 500 Internal Server Error', true, 500);
                 $this->setContent('It seems that "' . str_replace(ROOT_DIR, '', $default_layout) . '" does not exists.');
                 $this->send();
             }

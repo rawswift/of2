@@ -56,11 +56,11 @@ class Constructor extends Controller
                     View::renderLayout();
                 }
             } else {
-                Http::setHeader('HTTP/1.0 404 Not Found');
+                Http::setHeader(Http::getValue('SERVER_PROTOCOL') . ' 404 Not Found', true, 404);
                 View::setContent('Cannot find method "' . $action . '" on controller class "' . $controller . '"');
             }
         } else {
-            Http::setHeader('HTTP/1.0 404 Not Found');
+            Http::setHeader(Http::getValue('SERVER_PROTOCOL') . ' 404 Not Found', true, 404);
             View::setContent('Cannot find controller class "' . $controller . '"');
         }
         // check if we need to cache output/page and response header

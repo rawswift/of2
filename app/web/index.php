@@ -81,7 +81,7 @@ if (CHECK_PAGE_CACHE && $view->isPageCacheDirWritable() && $view->isPageCached($
         // ...then dispatch the requested controller and action method
         $constructor->dispatch();
     } else {
-        $http->setHeader('HTTP/1.0 404 Not Found');
+        $http->setHeader($http->getValue('SERVER_PROTOCOL') . ' 404 Not Found', true, 404);
         $view->setContent('Route Not Found');
         $view->send();
     }

@@ -34,6 +34,28 @@ class Http
     }
 
     /**
+     * Return $server ($_SERVER) variable
+     *
+     * @return string; request URI
+     */
+    public static function getServerInfo() {
+        return self::$server;
+    }
+
+    /**
+     * Get value from $_SERVER array
+     *
+     * @return string; request URI
+     */
+    public static function getValue($name) {
+        $name = strtoupper($name);
+        if (isset(self::$server[$name])) {
+            return self::$server[$name];
+        }
+        return false;
+    }
+
+    /**
      * Set HTTP header (response)
      *
      * @return void
