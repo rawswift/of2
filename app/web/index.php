@@ -40,9 +40,17 @@ $view = new Orinoco\Framework\View();
 // used for checking page cache
 $cache_file = md5($http->getRequestURI());
 
-// use page cache, if enabled and available
-if (PAGE_CACHE_ENABLE && $view->isPageCacheDirWritable() && $view->isPageCached($cache_file)) {
-    $view->setContent($view->readPageCache($cache_file));
+// see if we need to check page cache
+if (CHECK_PAGE_CACHE && $view->isPageCacheDirWritable() && $view->isPageCached($cache_file)) {
+    $cache = unserialize($view->readPageCache($cache_file));
+    if (isset($cache['header'])) {
+        foreach ($cache['header'] as $k => $v) {
+            $http->setHeader($v);
+        }
+    }
+    if (isset($cache['content'])) {
+        $view->setContent($cache['content']);
+    }
     $view->send();
 } else {
 
@@ -72,13 +80,6 @@ if (PAGE_CACHE_ENABLE && $view->isPageCacheDirWritable() && $view->isPageCached(
         $constructor = new \Orinoco\Framework\Constructor($route);
         // ...then dispatch the requested controller and action method
         $constructor->dispatch();
-        // check if we need to cache output/page
-        if (PAGE_CACHE_ENABLE && $view->isPageCacheDirWritable() && !$view->isPageCached($cache_file)) {
-            $cached_contents = ob_get_contents();
-            $view->writePageCache($cache_file, $cached_contents);
-        }
-        // finally, render the request's content
-        $view->send();
     } else {
         $http->setHeader('HTTP/1.0 404 Not Found');
         $view->setContent('Route Not Found');

@@ -58,12 +58,21 @@ class Constructor extends Controller
             } else {
                 Http::setHeader('HTTP/1.0 404 Not Found');
                 View::setContent('Cannot find method "' . $action . '" on controller class "' . $controller . '"');
-                View::send();
             }
         } else {
             Http::setHeader('HTTP/1.0 404 Not Found');
             View::setContent('Cannot find controller class "' . $controller . '"');
-            View::send();
         }
+        // check if we need to cache output/page and response header
+        $cache_file = md5(Http::getRequestURI());
+        if (View::cachePage() && View::isPageCacheDirWritable() && !View::isPageCached($cache_file)) {
+            // serialize before storing
+            $cache = array(
+                    'header' => headers_list(),
+                    'content' => ob_get_contents()
+                );
+            View::writePageCache($cache_file, serialize($cache));
+        }
+        View::send();
     }
 }

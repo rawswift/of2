@@ -14,7 +14,11 @@ use Orinoco\Framework\Route;
 class View
 {
     // whether or not to render view/template (HTML layout and HTML contents)
+    // default is true (render view/template)
     public static $view_enabled = true;
+    // whether or not to cache output/page and response header
+    // default is false (do not cache)
+    public static $cache_page = false;
 
     /**
      * Disable view/template rendering
@@ -121,11 +125,31 @@ class View
     }
 
     /**
+     * Enable page cache
+     *
+     * @return void
+     */
+    public static function cache()
+    {
+        self::$cache_page = true;
+    }
+
+    /**
+     * Return page cache flag
+     *
+     * @return void
+     */
+    public static function cachePage()
+    {
+        return self::$cache_page;
+    }
+
+    /**
      * Check if page cache directory is writable
      * 
      * @return bool; whether or not cache directory is writable
      */
-    public function isPageCacheDirWritable()
+    public static function isPageCacheDirWritable()
     {
         if (is_writable(APPLICATION_PAGE_CACHE_DIR)) {
             return true;
@@ -139,7 +163,7 @@ class View
      * @param File name $file
      * @return bool; whether or not there's a cached file or the has it expired
      */
-    public function isPageCached($file)
+    public static function isPageCached($file)
     {
         $cache_file = APPLICATION_PAGE_CACHE_DIR . $file;
         $cachefile_created = (file_exists($cache_file)) ? @filemtime($cache_file) : 0;
@@ -152,7 +176,7 @@ class View
      * @param File name $file
      * @return string; cache content
      */
-    public function readPageCache($file)
+    public static function readPageCache($file)
     {
         $cache_file = APPLICATION_PAGE_CACHE_DIR . $file;
         return file_get_contents($cache_file);
@@ -165,7 +189,7 @@ class View
      * @param Content $out
      * @return void
      */
-    public function writePageCache($file, $out)
+    public static function writePageCache($file, $out)
     {
         $cache_file = APPLICATION_PAGE_CACHE_DIR . $file;
         $fp = fopen($cache_file, 'w');

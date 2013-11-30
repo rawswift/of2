@@ -27,9 +27,9 @@ if (!defined('DEFAULT_ACTION')) {
     define('DEFAULT_ACTION', 'index');
 }
 
-// define page cache enabler, if it's not yet defined
-if (!defined('PAGE_CACHE_ENABLE')) {
-    define('PAGE_CACHE_ENABLE', false);
+// define page cache checker, if it's not yet defined
+if (!defined('CHECK_PAGE_CACHE')) {
+    define('CHECK_PAGE_CACHE', false);
 }
 
 // define page cache expiry time, if it's not yet defined

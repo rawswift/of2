@@ -10,5 +10,5 @@
 // define('APPLICATION_NAMESPACE', 'MyApp');
 
 // page cache related stuff
-// define('PAGE_CACHE_ENABLE', true); // turn ON page cache
+// define('CHECK_PAGE_CACHE', true); // enable page cache checker
 // define('PAGE_CACHE_EXPIRES', 900); // 15mins
