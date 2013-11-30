@@ -21,7 +21,7 @@ class View
      *
      * @return void
      */
-    public function disable()
+    public static function disable()
     {
         self::$view_enabled = false;
     }
@@ -95,7 +95,7 @@ class View
      *
      * @return void
      */
-    public function setContent($content = null)
+    public static function setContent($content = null)
     {
         print($content);
     }
