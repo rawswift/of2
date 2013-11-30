@@ -8,6 +8,8 @@
 
 namespace Orinoco\Framework;
 
+use Orinoco\Framework\Http;
+use Orinoco\Framework\Route;
 use Orinoco\Framework\View;
 
 class Controller extends View
@@ -19,7 +21,7 @@ class Controller extends View
      */
     public function getController()
     {
-        return \Orinoco\Framework\Route::getController();
+        return Route::getController();
     }
 
     /**
@@ -29,7 +31,7 @@ class Controller extends View
      */
     public function getAction()
     {
-        return \Orinoco\Framework\Route::getAction();
+        return Route::getAction();
     }
 
     /**

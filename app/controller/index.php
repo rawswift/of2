@@ -9,6 +9,6 @@ class index
 
     public function index()
     {
-        // do something useful here
+        // do nothing and let the framework render the associated layout and content
     }
 }

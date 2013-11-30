@@ -2,9 +2,8 @@
 
 use Orinoco\Framework\Http;
 use Orinoco\Framework\View;
-use Orinoco\Framework\Controller;
 
-class foo extends Controller
+class foo
 {
     public function __construct()
     {
@@ -31,6 +30,7 @@ class foo extends Controller
     // sample JSON response, using Http and View classes
     public function json()
     {
+        View::disable();
         $json = json_encode(array(
                 'ok' => true,
                 'message' => 'Hello World!'

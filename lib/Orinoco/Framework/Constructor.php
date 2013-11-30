@@ -9,6 +9,7 @@
 namespace Orinoco\Framework;
 
 use Orinoco\Framework\Http;
+use Orinoco\Framework\View;
 use Orinoco\Framework\Controller;
 
 class Constructor extends Controller
@@ -26,8 +27,8 @@ class Constructor extends Controller
      */
     public function __construct($route)
     {
-        $this->controller = $route::getController();
-        $this->action = $route::getAction();
+        $this->controller = $route->getController();
+        $this->action = $route->getAction();
     }
 
     /**
@@ -46,17 +47,23 @@ class Constructor extends Controller
             $$controller = new $controller();
             if (method_exists($$controller, $action)) {
                 $$controller->$action();
-                $this->inheritObjectVariables($$controller);
-                $this->renderLayout();
+                // Inherit controller object's variables on-fly,
+                // make them visible to the presentation layers
+                foreach($$controller as $k => $v) {
+                    $this->$k = $v;
+                }
+                if (View::viewEnabled()) {
+                    View::renderLayout();
+                }
             } else {
                 Http::setHeader('HTTP/1.0 404 Not Found');
-                $this->setContent('Cannot find method "' . $action . '" on controller class "' . $controller . '"');
-                $this->send();
+                View::setContent('Cannot find method "' . $action . '" on controller class "' . $controller . '"');
+                View::send();
             }
         } else {
             Http::setHeader('HTTP/1.0 404 Not Found');
-            $this->setContent('Cannot find controller class "' . $controller . '"');
-            $this->send();
+            View::setContent('Cannot find controller class "' . $controller . '"');
+            View::send();
         }
     }
 }

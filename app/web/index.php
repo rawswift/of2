@@ -38,7 +38,7 @@ $http = new Orinoco\Framework\Http($_SERVER);
 $view = new Orinoco\Framework\View();
 
 // used for checking page cache
-$cache_file = md5($http::getRequestURI());
+$cache_file = md5($http->getRequestURI());
 
 // use page cache, if enabled and available
 if (PAGE_CACHE_ENABLE && $view->isPageCacheDirWritable() && $view->isPageCached($cache_file)) {
@@ -52,7 +52,7 @@ if (PAGE_CACHE_ENABLE && $view->isPageCacheDirWritable() && $view->isPageCached(
     }
 
     // instantiate Route class, used for determining controller and action to be used
-    $route = new Orinoco\Framework\Route($http::getRequestURI());
+    $route = new Orinoco\Framework\Route($http->getRequestURI());
 
     // load developer's route config
     $custom_routes = APPLICATION_CONFIG_DIR . 'Route.php';

@@ -15,10 +15,12 @@ namespace Orinoco\Framework;
 class Util
 {
     /**
-     * This is just a sample method that returns bool true, nothing useful
+     * var_dump wrapper
+     *
+     * @return void
      */
-    public function sampleMethod()
+    public function dump($obj)
     {
-        return true;
+        var_dump($obj);
     }
 }

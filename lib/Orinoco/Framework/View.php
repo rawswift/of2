@@ -8,19 +8,32 @@
 
 namespace Orinoco\Framework;
 
+use Orinoco\Framework\Http;
+use Orinoco\Framework\Route;
+
 class View
 {
+    // whether or not to render view/template (HTML layout and HTML contents)
+    public static $view_enabled = true;
+
     /**
-     * Inherit controller object's variables on-fly, make them visible to the presentation layers
+     * Disable view/template rendering
      *
-     * @param Controller object $obj
      * @return void
      */
-    public function inheritObjectVariables($obj)
+    public function disable()
     {
-        foreach($obj as $k => $v) {
-            $this->$k = $v;
-        }
+        self::$view_enabled = false;
+    }
+
+    /**
+     * Get view flag
+     *
+     * @return bool; whether or not view is enabled
+     */
+    public function viewEnabled()
+    {
+        return self::$view_enabled;
     }
 
     /**
@@ -59,7 +72,7 @@ class View
      */
     public function getContent()
     {
-        $content_view = APPLICATION_PAGE_DIR . $this->getController() . '/' . $this->getAction() . PHP_FILE_EXTENSION;
+        $content_view = APPLICATION_PAGE_DIR . Route::getController() . '/' . Route::getAction() . PHP_FILE_EXTENSION;
         if(!file_exists($content_view)) {
             // No verbose
             return false;
