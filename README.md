@@ -28,13 +28,12 @@ A lightweight PHP framework.
     // use framework's classes
     use Orinoco\Framework\Http;
     use Orinoco\Framework\View;
-    use Orinoco\Framework\Controller;
 
     // use Monolog vendor (installed via Composer)
     use Monolog\Logger;
     use Monolog\Handler\StreamHandler;
 
-    class log extends Controller
+    class log
     {
             public function index()
             {
@@ -55,6 +54,9 @@ A lightweight PHP framework.
                             'Content-Length' => strlen($json),
                             'Content-type' => 'application/json;'
                     ));
+                    // skip HTML views (templates)
+                    View::disable();
+                    // ...and just render the JSON object
                     View::setContent($json);
             }
     }
