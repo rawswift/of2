@@ -13,6 +13,8 @@ use Orinoco\Framework\Route;
 
 class View
 {
+    // layout name
+    public static $layout;
     // whether or not to render view/template (HTML layout and HTML contents)
     // default is true (render view/template)
     public static $view_enabled = true;
@@ -41,15 +43,27 @@ class View
     }
 
     /**
+     * Set HTML layout
+     *
+     * @return void
+     */
+    public static function setLayout($layout_name)
+    {
+        self::$layout = $layout_name;
+    }
+
+    /**
      * Render presentation layout
      *
      * @return void
      */
     public function renderLayout()
     {
-        // check if $layout variable is set
-        if(isset($this->layout)) {
-            $layout_file = APPLICATION_LAYOUT_DIR . str_replace(PHP_FILE_EXTENSION, '', $this->layout) . PHP_FILE_EXTENSION;
+        // check if $layout is defined
+        $layout = isset($this->layout) ? $this->layout : self::$layout;
+        // check layout file
+        if(isset($layout)) {
+            $layout_file = APPLICATION_LAYOUT_DIR . str_replace(PHP_FILE_EXTENSION, '', $layout) . PHP_FILE_EXTENSION;
             if (!file_exists($layout_file)) {
                 Http::setHeader('Status: 200');
                 $this->setContent('It seems that "' . str_replace(ROOT_DIR, '', $layout_file) . '" does not exists.');
