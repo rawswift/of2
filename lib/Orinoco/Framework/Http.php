@@ -36,7 +36,7 @@ class Http
     /**
      * Return $server ($_SERVER) variable
      *
-     * @return string; request URI
+     * @return array $server ($_SERVER)
      */
     public static function getServerInfo() {
         return self::$server;
@@ -45,7 +45,8 @@ class Http
     /**
      * Get value from $_SERVER array
      *
-     * @return string; request URI
+     * @param key name $name
+     * @return string (value);
      */
     public static function getValue($name) {
         $name = strtoupper($name);
