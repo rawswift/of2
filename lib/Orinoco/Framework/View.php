@@ -99,6 +99,21 @@ class View
     }
 
     /**
+     * Get partial (presentation) content
+     *
+     * @return bool; whether or not partial file exists
+     */
+    public function getPartial($partial_name)
+    {
+        $partial_view = APPLICATION_PARTIAL_DIR . $partial_name . PHP_FILE_EXTENSION;
+        if(!file_exists($partial_view)) {
+            // No verbose
+            return false;
+        }
+        require $partial_view;
+    }
+
+    /**
      * Clear output buffer content
      *
      * @return void
