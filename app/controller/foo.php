@@ -30,7 +30,6 @@ class foo
     // sample JSON response, using Http and View classes
     public function json()
     {
-        View::disable();
         $json = json_encode(array(
                 'ok' => true,
                 'message' => 'Hello World!'
@@ -39,6 +38,9 @@ class foo
                 'Content-Length' => strlen($json),
                 'Content-type' => 'application/json;'
             ));
+        // skip HTML views (templates)
+        View::disable();
+        // ...and just render the JSON object
         View::setContent($json);
     }
 }
