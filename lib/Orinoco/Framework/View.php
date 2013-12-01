@@ -166,7 +166,7 @@ class View
     /**
      * Return page cache flag
      *
-     * @return void
+     * @return bool; whether or not to cache output
      */
     public static function cachePage()
     {
