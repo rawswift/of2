@@ -1,5 +1,7 @@
 # Orinoco Framework 2
 
+## NOTICE: This project is unmaintained and outdated. For the latest and updated source, please go to [GitHub/orinoco-framework-php](https://github.com/rawswift/orinoco-framework-php).
+
 A lightweight PHP framework.
 
 ## Quick Glance
